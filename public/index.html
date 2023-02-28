@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/styles.css" rel="stylesheet">
+        <script src="js/main.js" defer></script>
         <title>Open AI Image Generator</title>
     </head>
     <body>
@@ -12,11 +13,25 @@
             <div class="container">
                 <h2 class="header">OpenAI Image Generator</h2>
                 <p>Ask for an image you would like to see:</p>
-                <form class="formContainer">
+                <form id="image-form" class="formContainer">
                 <label for="input" class="sr-only">Input</label>
                 <input id="input" name="input" type="text" required placeholder="Enter your description">
+                <div class="formControl">
+                    <select name="size" id="size">
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
                 <button type="submit">Generate!</button>
                 </form>
+
+                <section class="image">
+                    <div class="imageContainer">
+                        <h2></h2>
+                        <img src="" alt="" id="image">
+                    </div>
+                </section>
                 <svg viewBox="0 0 1024 1024" class="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2" aria-hidden="true">
                 <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
                 <defs>
@@ -29,5 +44,6 @@
             </div>
             </div>
         </div>  
+        <div class="spinner"></div>
     </body>
 </html>
