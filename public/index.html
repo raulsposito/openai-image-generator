@@ -15,7 +15,7 @@
                 <p>Ask for an image you would like to see:</p>
                 <form id="image-form" class="formContainer">
                 <label for="input" class="sr-only">Input</label>
-                <input id="input" name="input" type="text" required placeholder="Enter your description">
+                <input class="input" id="input" name="input" type="text" placeholder="Enter your description">
                 <div class="formControl">
                     <select name="size" id="size">
                         <option value="small">Small</option>
@@ -23,6 +23,12 @@
                         <option value="large">Large</option>
                     </select>
                 </div>
+
+                <p>and // or</p>
+                <label class="input" for="file">Choose a file to edit:</label>
+
+                <input class="" type="file" id="file" name="file" accept="image/png">
+
                 <button type="submit">Generate!</button>
                 </form>
 

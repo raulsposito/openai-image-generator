@@ -1,4 +1,5 @@
 const { Configuration, OpenAIApi } = require("openai");
+const fs = require("fs");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -37,4 +38,34 @@ const generateImage = async (req, res) => {
     }
 }
 
-module.exports = { generateImage }
+// create the request to the api
+const generateImageVariation = async (req, res) => {
+    const { imageSource, size } = req.body;
+
+    const imageSize = size === "small" ? '256x256' : size === "medium" ? '512x512' : '1024x1024';
+
+    const buffer = imageSource;
+    buffer.name = `${buffer}".png"`;
+
+    try {
+        const response = await openai.createImageVariation(
+            fs.createReadStream(buffer),
+            1,
+            imageSize
+          );
+          image_url = response.data.data[0].url;
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response.status);
+            console.log(error.response.data);
+        } else {
+            console.log(error.message);
+        }
+        res.status(400).json({
+            success: false,
+            error: 'The image could not be generated'
+        });
+    }
+}
+
+module.exports = { generateImage, generateImageVariation }
